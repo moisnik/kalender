@@ -1,10 +1,11 @@
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.ArrayList
 
 public class Main {
-    public static void  kuupäevajärgi(ArrayList kalender; LocalDate kuupäev) {
+    public static void  kuupäevajärgi(ArrayList kalender; String kuupäev) {
         for (Ylesanded yl : kalender) {
-            if (yl.getKuupäev.equals(kuupäev)) {
+            if (yl.getKuupäev().equals(kuupäev)) {
                 System.out.println(yl.toString());
             }
 
@@ -17,10 +18,10 @@ public class Main {
         boolean jätka = true;
         LocalDate täna = LocalDate.now(); //YYYY-MM-DD
 
-        Ylesanded yl1 = Ylesanded("OOP projekt", "OOP", "2025-03-22", false);
-        Ylesanded yl2 = Ylesanded("Kontrolltöö", "Andmebaasid", "2025-03-11", true);
-        Ylesanded yl3 = Ylesanded("Kontrolltöö", "MMP", "2025-04-01", true);
-        ArrayList<Ylesanded> kalender = [yl1, yl2, yl3];
+        Ylesanded yl1 = new Ylesanded("OOP projekt", "OOP", "2025-03-22", false);
+        Ylesanded yl2 = new Ylesanded("Kontrolltöö", "Andmebaasid", "2025-03-11", true);
+        Ylesanded yl3 = new Ylesanded("Kontrolltöö", "MMP", "2025-04-01", true);
+        ArrayList<Ylesanded> kalender = new Ylesanded[]{yl1, yl2, yl3};
 
 
 
@@ -41,7 +42,7 @@ public class Main {
             scanner.close();
 
             if (sisend.equals("1")) {
-                kuupäevajärgi(täna);
+                kuupäevajärgi(kalender, täna.toString());
 
 
 
