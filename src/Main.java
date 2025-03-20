@@ -103,6 +103,11 @@ public class Main {
         System.out.println("Ülesanne lisatud!");
     }
 
+    /**
+     * Eemaldame ülesande kalendrist
+     * @param kalender - ülesannete list
+     * @param scanner - loeb kasutaja sisendit
+     */
     public static void eemalda(List<Ylesanded> kalender, Scanner scanner){
         boolean leitud = false;
         System.out.println("Ülesande eemaldamine:");
@@ -122,6 +127,11 @@ public class Main {
         if(!leitud) System.out.println("Sellist ülesannet ei leitud.");
     }
 
+    /**
+     * Muudame kalendris ülesande kuupäeva
+     * @param kalender - ülesannete list
+     * @param scanner - loeb kasutaja sisendit
+     */
     public static void muuda(List<Ylesanded> kalender, Scanner scanner){
         boolean leitud = false;
         System.out.println("Ülesande kuupäeva muutmine:");
