@@ -1,3 +1,13 @@
+/**************************************************
+ * Objektorienteeritud programmeerimine LTAT.03.003
+ * Rühmatöö.
+ * Teema: kalender
+ *
+ * Koostajad:
+ * Mia Mõisnik
+ * Emma Lauren Laikmaa
+ ***************************************************/
+
 import java.time.LocalDate;
 import java.util.*;
 
