@@ -3,6 +3,11 @@ import java.util.*;
 
 
 public class Main {
+    /**
+     * Väljastab kõik ülesanded, mis on etteantud kuupäeva tähtajaga
+     * @param kalender - ülesannete list
+     * @param kuupäev - kuupäev mille ülesandeid otsime ja väljastame
+     */
     public static void kuupäevajärgi(List<Ylesanded> kalender,  String kuupäev) {
         boolean prinditi = false;
         for (Ylesanded yl : kalender) {
@@ -14,6 +19,11 @@ public class Main {
         if (!prinditi) System.out.println("Kuupäeval " + kuupäev + " ülesandeid ei ole!");
     }
 
+    /**
+     * Väljstame kõik antud aine ülesnded
+     * @param kalender - ülesannete list
+     * @param aine - õppeaine mille ülesandeid otsime ja väljastame
+     */
     public static void ainejärgi(List<Ylesanded> kalender, String aine){
         boolean prinditi = false;
         if(aine.equals("1")){
@@ -36,6 +46,12 @@ public class Main {
         if (!prinditi) System.out.println("Antud aines ülesandeid ei ole!");
     }
 
+    /**
+     * Kasutades meetodit kuupäevajärgi() väljastame tsüklina mitme päeva ülesanded
+     * @param kordused - mitme päeva ylesandeid väljastama hakkame
+     * @param täna - võtab tänase kuupäeva, et sellest edasi ülesandeid väljastada
+     * @param kalender - ülesannete list
+     */
     public static void mitmepäevakaupa(int kordused, LocalDate täna, List<Ylesanded> kalender) {
         for (int i = 0; i < kordused; i++) {
             LocalDate kuupäev = täna.plusDays(i);
