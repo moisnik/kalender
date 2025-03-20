@@ -58,7 +58,7 @@ public class Main {
 
     /**
      * Kasutades meetodit kuupäevajärgi() väljastame tsüklina mitme päeva ülesanded
-     * @param kordused - mitme päeva ylesandeid väljastama hakkame
+     * @param kordused - mitme päeva ülesandeid väljastama hakkame
      * @param täna - võtab tänase kuupäeva, et sellest edasi ülesandeid väljastada
      * @param kalender - ülesannete list
      */
