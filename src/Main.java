@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 
 public class Main {
@@ -12,10 +13,41 @@ public class Main {
                 System.out.println(yl);
                 prinditi = true;
             }
-
         }
-        if (!prinditi) System.out.println("Antud kuupäeval ülesandeid ei ole!");
+        if (!prinditi) System.out.println("Kuupäeval " + kuupäev + " ülesandeid ei ole!");
+    }
 
+    public static void ainejärgi(List<Ylesanded> kalender, String aine){
+        boolean prinditi = false;
+        if(aine.equals("1")){
+            aine= "OOP";
+        } else if (aine.equals("2")){
+            aine= "Programmeerimine II";
+        } else if (aine.equals("3")){
+            aine= "Andmeturve";
+        }else if (aine.equals("4")){
+            aine= "Andmebaasid";
+        }else if (aine.equals("5")){
+            aine= "MMP";
+        }
+        for (Ylesanded yl : kalender) {
+            if (yl.getAine().equals(aine)) {
+                System.out.println(yl);
+                prinditi = true;
+            }
+        }
+        if (!prinditi) System.out.println("Antud aines ülesandeid ei ole!");
+    }
+
+    public static void mitmepäevakaupa(int kordused, LocalDate täna, List<Ylesanded> kalender) {
+        for (int i = 0; i < kordused; i++) {
+            LocalDate kuupäev = täna.plusDays(i);
+            kuupäevajärgi(kalender, kuupäev.toString());
+        }
+    }
+
+    public static void suvaline(List<Ylesanded> kalender){
+        int pikkus;
     }
 
 
@@ -66,24 +98,32 @@ public class Main {
                 System.out.println("Vali õppeaine:");
                 System.out.println("1 - OOP");
                 System.out.println("2 - Programmeerimine II");
+                System.out.println("3 - Andmeturve");
+                System.out.println("4 - Andmebaasid");
+                System.out.println("5 - MMP");
+                String õppeaine = scanner.nextLine();
+                ainejärgi(kalender, õppeaine);
             }
-            else if (sisend.equals("4")){}
-            else if (sisend.equals("5")){}
-            else if (sisend.equals("6")){}
+            else if (sisend.equals("4")){
+                mitmepäevakaupa(7, täna, kalender);
+            }
+            else if (sisend.equals("5")){
+                mitmepäevakaupa(30, täna, kalender);
+            }
+            else if (sisend.equals("6")){
+
+            }
             else if (sisend.equals("7")){}
             else if (sisend.equals("8")){}
             else if (sisend.equals("9")){}
             else if (sisend.equals("lõpp")){
                 scanner.close();
                 break;
-
             }
 
-
-
-
-
+            System.out.println("Jätkamiseks vajuta ENTER! ");
+            String sisend = scanner.nextLine();
+            if (sisend !="") break;
         }
-
     }
 }
