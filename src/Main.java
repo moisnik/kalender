@@ -1,27 +1,38 @@
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList
+
 
 public class Main {
-    public static void  kuupäevajärgi(ArrayList kalender; String kuupäev) {
+    public static void kuupäevajärgi(List<Ylesanded> kalender,  String kuupäev) {
+        boolean prinditi = false;
         for (Ylesanded yl : kalender) {
             if (yl.getKuupäev().equals(kuupäev)) {
-                System.out.println(yl.toString());
+                System.out.println(yl);
+                prinditi = true;
             }
 
         }
+        if (!prinditi) System.out.println("Antud kuupäeval ülesandeid ei ole!");
 
     }
+
+
 
     public static void main(String[] args) {
 
         boolean jätka = true;
         LocalDate täna = LocalDate.now(); //YYYY-MM-DD
 
-        Ylesanded yl1 = new Ylesanded("OOP projekt", "OOP", "2025-03-22", false);
+        Ylesanded yl1 = new Ylesanded("OOP projekt", "OOP", "2025-03-20", false);
         Ylesanded yl2 = new Ylesanded("Kontrolltöö", "Andmebaasid", "2025-03-11", true);
         Ylesanded yl3 = new Ylesanded("Kontrolltöö", "MMP", "2025-04-01", true);
-        ArrayList<Ylesanded> kalender = new Ylesanded[]{yl1, yl2, yl3};
+        Ylesanded[] algne = {yl1, yl2, yl3};
+        List<Ylesanded> kalender = Arrays.asList(algne);
+        for (Ylesanded ylesanded : kalender) {
+            System.out.println(ylesanded);
+        }
 
 
 
@@ -39,14 +50,38 @@ public class Main {
             System.out.println("Lõpetamiseks sisesta 'lõpp'.");
             System.out.print("Sisesta toimingu number,mida soovid teostada: ");
             String sisend = scanner.nextLine();  // Loeme sisestatud rea
-            scanner.close();
+
 
             if (sisend.equals("1")) {
-                kuupäevajärgi(kalender, täna.toString());
+                System.out.println("tsau");
+
+                kuupäevajärgi(kalender, täna.toString());}
+
+            else if (sisend.equals("2")){
+                System.out.print("Sisesta soovitud kuupäev kujul 'YYYY-MM-DD': ");
+                String kuupäev = scanner.nextLine();
+                kuupäevajärgi(kalender, kuupäev);
+            }
+            else if (sisend.equals("3")){
+                System.out.println("Vali õppeaine:");
+                System.out.println("1 - OOP");
+                System.out.println("2 - Programmeerimine II");
+            }
+            else if (sisend.equals("4")){}
+            else if (sisend.equals("5")){}
+            else if (sisend.equals("6")){}
+            else if (sisend.equals("7")){}
+            else if (sisend.equals("8")){}
+            else if (sisend.equals("9")){}
+            else if (sisend.equals("lõpp")){
+                scanner.close();
+                break;
+
+            }
 
 
 
-        }
+
 
         }
 
