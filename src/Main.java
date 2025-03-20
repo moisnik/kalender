@@ -80,7 +80,7 @@ public class Main {
     }
 
     /**
-     * Lisame uue meetodi ülesannete listi, uue ülesande info küsime meetodi sees
+     * Lisame uue ülesande ülesannete listi, uue ülesande info küsime meetodi sees
      * @param kalender - ülesannete list
      * @param scanner - toome kaasa scanneri välja et vastuseid sisse lugeda
      */
