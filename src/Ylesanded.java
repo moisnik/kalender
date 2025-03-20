@@ -23,11 +23,15 @@ public class Ylesanded {
         return aine;
     }
 
+    public String getNimi() {
+        return nimi;
+    }
+
     @Override
     public String toString() {
         if (üksi == true) {
-            return "Ülesanne: " + nimi + " aines: " + aine + " tähtaeg: " + kuupäev + " iseseisev töö";
+            return  aine + ". " + nimi +  " tähtaeg: " + kuupäev + ", iseseisev töö";
         }
-        else return "Ülesanne: " + nimi + " aines: " + aine + " tähtaeg: " + kuupäev + " rühmatöö";
+        else return aine + ". " + nimi + " tähtaeg: " + kuupäev + " rühmatöö";
     }
 }

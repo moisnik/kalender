@@ -1,8 +1,5 @@
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*;
 
 
 public class Main {
@@ -47,9 +44,69 @@ public class Main {
     }
 
     public static void suvaline(List<Ylesanded> kalender){
-        int pikkus;
+        int pikkus = kalender.size();
+        int suvaline = (int) (Math.random()* pikkus);
+        System.out.println(kalender.get(suvaline));
     }
 
+    public static void lisa(List<Ylesanded> kalender, Scanner scanner){
+        boolean üksi;
+        System.out.println("Ülesande lisamine:");
+        System.out.print("Sisesta ülesande nimi: ");
+        String nimi = scanner.nextLine();
+        System.out.print("Sisesta õppeaine: ");
+        String aine = scanner.nextLine();
+        System.out.print("Sisesta ülesande tähtaeg kujul 'YYYY-MM-DD':");
+        String tähtaeg = scanner.nextLine();
+        System.out.print("Kas ülesanne on individuaalne? (y/n)");
+        String vastus = scanner.nextLine();
+        if (vastus.equals("y")){
+            üksi = true;}
+        else {üksi = false;}
+        Ylesanded yl = new Ylesanded(nimi, aine, tähtaeg, üksi);
+        kalender.add(yl);
+        System.out.println("Ülesanne lisatud!");
+    }
+
+    public static void eemalda(List<Ylesanded> kalender, Scanner scanner){
+        boolean leitud = false;
+        System.out.println("Ülesande eemaldamine:");
+        System.out.print("Sisesta ülesande nimi: ");
+        String nimi = scanner.nextLine();
+        System.out.print("Sisesta õppeaine: ");
+        String aine = scanner.nextLine();
+        System.out.print("Sisesta ülesande tähtaeg kujul 'YYYY-MM-DD':");
+        String tähtaeg = scanner.nextLine();
+        for (Ylesanded ylesanne : kalender) {
+            if(ylesanne.getNimi().equals(nimi) && ylesanne.getAine().equals(aine) && ylesanne.getKuupäev().equals(tähtaeg)){
+                kalender.remove(ylesanne);
+                System.out.println("Ülesanne eemaldatud!");
+            }
+
+        }
+        if(!leitud) System.out.println("Sellist ülesannet ei leitud.");
+    }
+
+    public static void muuda(List<Ylesanded> kalender, Scanner scanner){
+        boolean leitud = false;
+        System.out.println("Ülesande kuupäeva muutmine:");
+        System.out.print("Sisesta ülesande nimi: ");
+        String nimi = scanner.nextLine();
+        System.out.print("Sisesta õppeaine: ");
+        String aine = scanner.nextLine();
+        System.out.print("Sisesta ülesande praegune tähtaeg kujul 'YYYY-MM-DD': ");
+        String tähtaeg = scanner.nextLine();
+        for (Ylesanded ylesanne : kalender) {
+            if(ylesanne.getNimi().equals(nimi) && ylesanne.getAine().equals(aine) && ylesanne.getKuupäev().equals(tähtaeg)){
+                System.out.print("Sisesta ülesande uus tähtaeg kujul 'YYYY-MM-DD': ");
+                String uus = scanner.nextLine();
+                ylesanne.setKuupäev(uus);
+                System.out.println("Ülesanne muudetud!");
+                leitud = true;
+            }
+        }
+        if(!leitud) System.out.println("Sellist ülesannet ei leitud.");
+    }
 
 
     public static void main(String[] args) {
@@ -61,15 +118,14 @@ public class Main {
         Ylesanded yl2 = new Ylesanded("Kontrolltöö", "Andmebaasid", "2025-03-11", true);
         Ylesanded yl3 = new Ylesanded("Kontrolltöö", "MMP", "2025-04-01", true);
         Ylesanded[] algne = {yl1, yl2, yl3};
-        List<Ylesanded> kalender = Arrays.asList(algne);
-        for (Ylesanded ylesanded : kalender) {
-            System.out.println(ylesanded);
-        }
+        List<Ylesanded> kalender = new ArrayList<>(List.of(yl1, yl2, yl3));
+
 
 
 
         while (jätka) {
             Scanner scanner = new Scanner(System.in);
+            System.out.println("0 - Kuva kõik ülesanded.");
             System.out.println("1 - Kuva tänased ülesanded.");
             System.out.println("2 - Otsi ülesandeid kuupäeva järgi.");
             System.out.println("3 - Otsi ülesandeid õppeaine järgi.");
@@ -77,16 +133,19 @@ public class Main {
             System.out.println("5 - Kuva järgneva kuu ülesanded.");
             System.out.println("6 - Anna juhuslik ülesanne.");
             System.out.println("7 - Lisa ülesanne");
-            System.out.println("8 - Muuda ülesannet.");
+            System.out.println("8 - Muuda ülesande kuupäeva.");
             System.out.println("9 - Eemalda ülesanne.");
             System.out.println("Lõpetamiseks sisesta 'lõpp'.");
-            System.out.print("Sisesta toimingu number,mida soovid teostada: ");
+            System.out.print("Sisesta toimingu number, mida soovid teostada: ");
             String sisend = scanner.nextLine();  // Loeme sisestatud rea
 
 
-            if (sisend.equals("1")) {
-                System.out.println("tsau");
-
+            if (sisend.equals("0")){
+                for (Ylesanded ylesanded : kalender) {
+                    System.out.println(ylesanded);
+                }
+            }
+            else if (sisend.equals("1")) {
                 kuupäevajärgi(kalender, täna.toString());}
 
             else if (sisend.equals("2")){
@@ -111,19 +170,25 @@ public class Main {
                 mitmepäevakaupa(30, täna, kalender);
             }
             else if (sisend.equals("6")){
-
+                suvaline(kalender);
             }
-            else if (sisend.equals("7")){}
-            else if (sisend.equals("8")){}
-            else if (sisend.equals("9")){}
+            else if (sisend.equals("7")){
+                lisa(kalender, scanner);
+            }
+            else if (sisend.equals("8")){
+                muuda(kalender, scanner);
+            }
+            else if (sisend.equals("9")){
+                eemalda(kalender, scanner);
+            }
             else if (sisend.equals("lõpp")){
                 scanner.close();
                 break;
             }
 
             System.out.println("Jätkamiseks vajuta ENTER! ");
-            String sisend = scanner.nextLine();
-            if (sisend !="") break;
+            String edasi = scanner.nextLine();
+            if (edasi !="") break;
         }
     }
 }
