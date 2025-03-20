@@ -69,12 +69,21 @@ public class Main {
         }
     }
 
+    /**
+     * Meetod genereerib suvalise juhuarvu ja prindib vastaval indeksil asetseva listi isendi (ülesande)
+     * @param kalender - ülesannete list
+     */
     public static void suvaline(List<Ylesanded> kalender){
         int pikkus = kalender.size();
         int suvaline = (int) (Math.random()* pikkus);
         System.out.println(kalender.get(suvaline));
     }
 
+    /**
+     * Lisame uue meetodi ülesannete listi, uue ülesande info küsime meetodi sees
+     * @param kalender - ülesannete list
+     * @param scanner - toome kaasa scanneri välja et vastuseid sisse lugeda
+     */
     public static void lisa(List<Ylesanded> kalender, Scanner scanner){
         boolean üksi;
         System.out.println("Ülesande lisamine:");
